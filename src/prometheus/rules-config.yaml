@@ -1,0 +1,6 @@
+groups:
+  - name: example
+    rules:
+      - alert: Latency for Recommendation Service
+        expr: max(histogram_quantile(0.999, sum(rate(duration_milliseconds_bucket{service_name="recommendationservice"}[10m])) by (le))) > 2
+        for: 5s
